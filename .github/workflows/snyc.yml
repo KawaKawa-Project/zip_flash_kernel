@@ -34,7 +34,10 @@ jobs:
             ! -name '.github' \
             -exec rm -rf {} +
 
-          cp -a /tmp/upstream/. .
+          rsync -a \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            /tmp/upstream/ ./
 
       - name: Commit and push
         run: |
